@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Management System</title>
+<style>
+    /* Vibrant Background & Animations */
+    body { 
+        font-family: 'Poppins', sans-serif; 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        margin: 0; 
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    /* Floating Hero Section */
+    .hero {
+        text-align: center;
+        padding: 60px 20px;
+        background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
+        background-size: cover;
+        background-position: center;
+        border-bottom: 5px solid #ff0080; /* Vibrant Pink accent */
+    }
+
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 40px;
+        display: inline-block;
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    /* Vibrant Form Container */
+    .reg-card {
+        max-width: 500px;
+        margin: -40px auto 50px;
+        background: rgba(255, 255, 255, 0.95);
+        color: #333;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .reg-card h2 {
+        color: #764ba2;
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    /* Input Styling */
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 2px solid #eee;
+        border-radius: 12px;
+        transition: 0.3s;
+        box-sizing: border-box;
+    }
+
+    input:focus {
+        border-color: #ff0080;
+        outline: none;
+        box-shadow: 0 0 10px rgba(255, 0, 128, 0.2);
+    }
+
+    /* Vibrant Button */
+    .btn-grad {
+        background: linear-gradient(to right, #ff0080, #ff8c00);
+        color: white;
+        border: none;
+        padding: 15px;
+        width: 100%;
+        border-radius: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+
+    .btn-grad:hover {
+        background: linear-gradient(to left, #ff0080, #ff8c00);
+        letter-spacing: 1px;
+    }
+</style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-overlay">
+        <h1 style="margin:0; font-size: 40px;">🌟 Student Portal 🌟</h1>
+        <p>Empowering the next generation of AI & ML Leaders</p>
+    </div>
+</div>
+
+<div class="reg-card" id="register">
+    <h2>Join the Community</h2>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <input type="text" id="fname" placeholder="First Name (6+ letters)">
+        <input type="text" id="lname" placeholder="Last Name">
+        <input type="password" id="password" placeholder="Password (6+ chars)">
+        <input type="text" id="email" placeholder="Email Address">
+        <input type="text" id="mobile" placeholder="Mobile Number (10 digits)">
+        <textarea id="address" placeholder="Residential Address" rows="3"></textarea>
+        <button type="submit" class="btn-grad">Create Account</button>
+    </form>
+</div>
+
+<script>
+function validateForm() {
+    const fname = document.getElementById("fname").value;
+    const lname = document.getElementById("lname").value;
+    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
+    const mobile = document.getElementById("mobile").value;
+    const address = document.getElementById("address").value;
+
+    const alphaRegex = /^[A-Za-z]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const mobileRegex = /^[0-9]{10}$/;
+
+    if (!alphaRegex.test(fname) || fname.length < 6) {
+        alert("Oops! First Name must be only alphabets and 6+ characters.");
+        return false;
+    }
+    if (lname.trim() === "") { alert("Last Name is required!"); return false; }
+    if (password.length < 6) { alert("Password must be at least 6 characters."); return false; }
+    if (!emailRegex.test(email)) { alert("Check your email format (name@domain.com)."); return false; }
+    if (!mobileRegex.test(mobile)) { alert("Please enter a 10-digit mobile number."); return false; }
+    if (address.trim() === "") { alert("Address cannot be blank."); return false; }
+
+    alert("Welcome aboard! Registration Successful.");
+    return true;
+}
+</script>
+
+</body>
+</html>
